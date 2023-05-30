@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Category List</title>
+</head>
+<body>
+  <h1>Category List</h1>
+  <% if (categories.length === 0) { %>
+    <p>No categories found.</p>
+  <% } else { %>
+    <ul>
+      <% categories.forEach((category) => { %>
+        <li>
+          <h2><%= category.name %></h2>
+          <a href="/articles/categories/updateform/<%= category._id %>">Edit</a>
+          <form action="/articles/categories/delete/<%= category._id %>" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }); %>
+    </ul>
+  <% } %>
+  <a href="/articles/categories/createform">Create New Category</a>
+</body>
+</html>

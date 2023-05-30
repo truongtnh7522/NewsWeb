@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Article Detail</title>
+</head>
+<body>
+  <h1><%= article.title %></h1>
+  <p><%= article.content %></p>
+  <p>Author: <%= article.author %></p>
+  <p>Category: <%= article.category.name %></p> <!-- Add this line to display the category name -->
+  <p>Description: <%= article.description %></p> <!-- Added this line -->
+ 
+    <img src="<%= article.imageUrl %>" alt="Article Image" style="max-width: 300px; max-height: 300px;">
+ 
+  <p>Created At: <%= article.createdAt.toDateString() %></p>
+  <a href="/articles">Back to Article List</a>
+</body>
+</html>

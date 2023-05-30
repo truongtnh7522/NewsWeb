@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Article List</title>
+</head>
+
+<body>
+  <h1>Article List</h1>
+
+  <% if (!user) { %>
+    <!-- Hiển thị nút đăng ký và đăng nhập khi chưa đăng nhập -->
+    <a href="/registerform">Đăng ký</a>
+    <a href="/loginform">Đăng nhập</a>
+    <% } else { %>
+      <!-- Hiển thị thông tin người dùng và nút logout khi đã đăng nhập -->
+      <p>Người dùng: <%= user.name %>
+      </p>
+      <p>Email: <%= user.email %>
+      </p>
+      <p> <img src="<%= user.image %>" alt="User Image" style="max-width: 300px; max-height: 300px;"></p>
+      <a href="/logout">Đăng xuất</a>
+      <form id="deleteUserForm" action="/articles/user/deletepersonuser" method="POST">
+        <input type="hidden" name="userId" value="<%= user._id %>">
+        <button type="submit">Delete Account</button>
+      </form>
+      <% } %>
+
+        <% if (categories.length===0) { %>
+          <p>No categories found.</p>
+          <% } else { %>
+            <label for="category">Select Category:</label>
+            <select id="category" name="category">
+              <option value="" <%=typeof selectedCategory==='undefined' ? 'selected' : '' %>>Danh mục</option>
+              <% categories.forEach((category)=> { %>
+                <option value="<%= category._id %>" <%=category.selected ? 'selected' : '' %>><%= category.name %>
+                </option>
+                <% }); %>
+            </select>
+            <% } %>
+
+              <% if (articles.length===0) { %>
+                <p>No articles found.</p>
+                <% } else { %>
+                  <ul>
+                    <% articles.forEach((article)=> { %>
+                      <li>
+                        <h2>
+                          <%= article.title %>
+                        </h2>
+                        <p>Category: <%= article.category.name %>
+                        </p>
+                        <p>Description: <%= article.description %>
+                        </p>
+                        <img src="<%= article.imageUrl %>" alt="Article Image"
+                          style="max-width: 300px; max-height: 300px;">
+                        <p>Created At: <%= article.createdAt.toDateString() %>
+                        </p>
+                        <a href="/articles/user/find/<%= article._id %>">Read More</a>
+                      </li>
+                      <% }); %>
+                  </ul>
+                  <% } %>
+
+                    <a href="/articles/user">Back to Article List</a>
+
+
+                    <script>
+                      const deleteUserForm = document.getElementById('deleteUserForm');
+
+                      deleteUserForm.addEventListener('submit', function (event) {
+                        event.preventDefault();
+
+                        const confirmation = confirm('Are you sure you want to delete your account?');
+
+                        if (confirmation) {
+                          deleteUserForm.submit();
+                        }
+                      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      const categorySelect = document.getElementById('category');
+
+                      categorySelect.addEventListener('change', function () {
+                        const categoryId = categorySelect.value;
+                        window.location.href = `/articles/user/category/${categoryId}`;
+                      });
+
+                      // Đặt lại option được chọn dựa trên query parameter trong URL
+                      document.addEventListener('DOMContentLoaded', function () {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const selectedCategory = urlParams.get('categoryId');
+                        if (selectedCategory) {
+                          categorySelect.value = selectedCategory;
+                        }
+                      });
+                    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Article List</title>
+</head>
+<body>
+  <h1>Article List</h1>
+  <% if (articles.length === 0) { %>
+    <p>No articles found.</p>
+  <% } else { %>
+    <ul>
+      <% articles.forEach((article) => { %>
+        <li>
+          <h2><%= article.title %></h2>
+          <p><%= article.content %></p>
+          <p>Author: <%= article.author %></p>
+          <p>Category: <%= article.category.name %></p> <!-- Add this line to display the category name -->
+          <p>Description: <%= article.description %></p> 
+       
+          <img src="<%= article.imageUrl %>" alt="Article Image" style="max-width: 300px; max-height: 300px;">
+       
+          
+          <p>Created At: <%= article.createdAt.toDateString() %></p>
+          <a href="/articles/find/<%= article._id %>">Read More</a>
+          <a href="/articles/updateform/<%= article._id %>">Edit</a>
+          <form action="/articles/delete/<%= article._id %>" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }); %>
+    </ul>
+  <% } %>
+  <a href="/logout">Đăng xuất</a>
+      <form id="deleteUserForm" action="/articles/user/deletepersonuser" method="POST">
+        <input type="hidden" name="userId" value="<%= user._id %>">
+        <button type="submit">Delete Account</button>
+      </form>
+  <a href="/articles/createform">Create New Article</a>
+</body>
+<script>
+  const deleteUserForm = document.getElementById('deleteUserForm');
+
+deleteUserForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const confirmation = confirm('Are you sure you want to delete your account?');
+
+  if (confirmation) {
+    deleteUserForm.submit();
+  }
+});
+</script>
+</html>
