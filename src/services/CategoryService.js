@@ -1,6 +1,10 @@
 const Category = require('../models/Category');
 
 class CategoryService {
+  async searchCategories(query) {
+    const categories = await Category.find({ name: { $regex: String(query), $options: 'i' } }).exec();
+    return categories;
+  }
   async getAllCategories() {
     try {
       const categories = await Category.find();

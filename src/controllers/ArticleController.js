@@ -4,6 +4,7 @@ const ArticleService = require('../services/ArticleService');
 const Article = require('../models/Article'); // Add this line
 const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
+const CategoryService = require("../services/CategoryService");
 
 // Khởi tạo Cloudinary
 cloudinary.config({
@@ -18,6 +19,7 @@ const upload = multer({ dest: 'uploads/' }); // Thư mục tạm để lưu file
 class ArticleController {
   constructor() {
     this.articleService = new ArticleService();
+    this.categoryService = new CategoryService();
     this.getAllArticles = this.getAllArticles.bind(this);
     this.getArticleById = this.getArticleById.bind(this);
     this.createArticle = this.createArticle.bind(this);
@@ -25,8 +27,21 @@ class ArticleController {
     this.updateArticle = this.updateArticle.bind(this);
     this.showUpdateForm = this.showUpdateForm.bind(this);
     this.deleteArticle = this.deleteArticle.bind(this);
+    this.searchArticles = this.searchArticles.bind(this);
   }
-
+  async searchArticles(req, res) {
+    try {
+      const { q } = req.query;
+      const articles = await this.articleService.searchArticles(q);
+      const categories = await this.categoryService.getAllCategories();
+      const user = req.user;
+  
+      res.render('articles/index', { articles, categories, user });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Server Error');
+    }
+  }
   async getAllArticles(req, res) {
     try {
       const articles = await this.articleService.getAllArticles();

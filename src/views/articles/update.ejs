@@ -4,47 +4,211 @@
 <head>
   <meta charset="UTF-8">
   <title>Update Article</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <style>
+      input[type="file"]::file-selector-button {
+        margin-right: 20px;
+        border: none;
+        background: #084cdf;
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out;
+      }
+
+      input[type="file"]::file-selector-button:hover {
+        background: #0d45a5;
+      }
+      img {
+        height: 100px;
+        width: 100px;
+      }
+  </style>
 </head>
 
-<body>
-  <h2>Update Article</h2>
+<body style="
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+background-color: #f2f5fa;
+overflow: hidden;
+">
+ <div
+ style="
+   display: block;
+   background-color: #ffffff;
+   color: black;
+   height: 90%;
+   width: 800px;
+   border-radius: 10px;
+ "
+>
+  <div style="display: flex; align-items: center; justify-content: center">
+    <a href="/articles" style="text-decoration: none; position: absolute; top:65px; left: 380px;"><i  style="font-size: 50px; color:black;" class="fa fa-angle-left"></i></a>
+    <h2>Update Article</h2>
+  </div>
+  <div style="margin-top: 15px; height: auto">
   <form action="/articles/update/<%= article._id %>" method="POST" enctype="multipart/form-data">
-    <div>
-      <label for="title">Title:</label>
-      <input type="text" name="title" value="<%= article.title %>" required>
+    <div
+      style="display: flex; align-items: center; justify-content: start"
+    >  <label for="title" style="margin-right: 85px;font-size: 20px;margin-left: 20px;">Title</label>
+      <input type="text" id="title" name="title" value="<%= article.title %>" required  style="
+      height: 20px;
+      width: 600px;
+      background-color: #f2f5fa;
+      outline: none;
+      border: 1px solid white;
+      color: black;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 8px;
+    "/> </div>
+    <div style="display: flex;">
+     <div style="display: flex; align-items: center; justify-content: start; margin-top: 10px;">
+      <label for="author" style="margin-right: 60px;font-size: 20px;margin-left: 20px;">Author:</label>
+      <input type="text" name="author" value="<%= article.author %>" required  style="
+      height: 20px;
+      width: 300px;
+      background-color: #f2f5fa;
+      outline: none;
+      border: 1px solid white;
+      color: black;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 8px;
+    ">
     </div>
-    <div>
-      <label for="content">Content:</label>
-      <textarea name="content" rows="4" required><%= article.content %></textarea>
-    </div>
-    <div>
-      <label for="author">Author:</label>
-      <input type="text" name="author" value="<%= article.author %>" required>
-    </div>
-    <div>
-      <label for="category">Category:</label>
-      <select id="category" name="categoryId" required> <!-- Change name attribute to "categoryId" -->
+    
+   
+    <div style="display: flex; align-items: center; justify-content: start; margin-top: 10px;">
+      <label for="category" style="margin-right: 10px;font-size: 20px;margin-left: 20px;">Category:</label>
+      <select id="category" name="categoryId" required style="outline: none; width: 150px;height: 30px;border: 2px solid #f2f5fa;  color: black; border-radius: 5px;
+      font-size: 20px; cursor: pointer;"> <!-- Change name attribute to "categoryId" -->
         <% categories.forEach((category)=> { %>
-          <option value="<%= category._id %>" <%=category._id.equals(article.category) ? 'selected' : '' %>><%=
+          <option style="  color: black;
+          font-size: 20px; cursor: pointer;" value="<%= category._id %>" <%=category._id.equals(article.category) ? 'selected' : '' %>><%=
               category.name %>
           </option> <!-- Change "article.categoryId" to "article.category" -->
           <% }); %>
       </select>
     </div>
-    <div>
-      <label for="description">Description:</label>
-      <textarea name="description" rows="4" required><%= article.description %></textarea>
+  </div>
+  <div style="display: flex; align-items: center; justify-content: start; margin-top: 20px;">
+    
+    <br>
+    <label for="image" style="margin-right: 70px;font-size: 20px;margin-left: 20px;">Image:</label>
+    <img src="<%= article.imageUrl %>" alt="Article Image" >
+    <input
+    type="file"
+    id="image"
+    name="image"
+    required
+    placeholder="Profile Image"
+    style="margin-left: 30px;"
+  />
+  <div id="preview" ></div>
+  </div>
+    <br>
+    <div style="display: flex; align-items: center; justify-content: start; margin-top: 0px;">
+      <label for="description" style="margin-right: 25px;font-size: 20px;margin-left: 20px;">Description:</label>
+      <textarea name="description" rows="4" required style="
+      height: 100px;
+      width: 600px;
+      background-color: #f2f5fa;
+      outline: none;
+      border: 1px solid white;
+      color: black;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 5px;
+    "><%= article.description %></textarea>
     </div>
-    <img src="<%= article.imageUrl %>" alt="Article Image" style="max-width: 300px; max-height: 300px;">
-    <br>
-    <label for="image">Image:</label>
-    <input type="file" id="image" name="image">
-    <br>
-    <div>
-      <button type="submit">Update</button>
+    <div style="display: flex; align-items: center; justify-content: start;margin-top: 10px;">
+      <label for="content" style="margin-right: 55px;font-size: 20px;margin-left: 20px;">Content:</label>
+      <textarea name="content" rows="4" required style="
+        height: 150px;
+      width: 600px;
+      background-color: #f2f5fa;
+      outline: none;
+      border: 1px solid white;
+      color: black;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 5px;
+    "><%= article.content %></textarea>
+    </div>
+    <div
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 40px;
+    "
+  >
+      <button type="submit" style="
+      width: 130px;
+      height: 50px;
+      font-size: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      cursor: pointer;
+      background-color: transparent;
+      outline: none;
+      border: 4px solid #f2f5fa;
+      color: black;
+      
+      border-radius: 8px;
+    " >Update</button>
     </div>
   </form>
-  <a href="/articles">Back to Article List</a>
+  </div>
+ 
+  </div>
+  <script>
+    // Lấy đối tượng input và div preview
+    const imageInput = document.getElementById("image");
+    const preview = document.getElementById("preview");
+
+    // Thêm sự kiện onchange cho input
+    imageInput.addEventListener("change", function (event) {
+      // Lấy danh sách các tệp tin đã chọn
+      const fileList = event.target.files;
+
+      // Kiểm tra xem có tệp tin nào được chọn hay không
+      if (fileList.length > 0) {
+        // Lấy tệp tin đầu tiên từ danh sách
+        const file = fileList[0];
+
+        // Kiểm tra xem tệp tin có phải là hình ảnh hay không
+        if (file.type.startsWith("image/")) {
+          // Tạo đối tượng FileReader để đọc nội dung của tệp tin
+          const reader = new FileReader();
+
+          // Thiết lập sự kiện khi đọc hoàn thành
+          reader.onload = function () {
+            // Tạo đối tượng hình ảnh
+            const image = new Image();
+            image.src = reader.result;
+
+            // Thêm hình ảnh vào div preview
+            preview.innerHTML = "";
+            preview.appendChild(image);
+          };
+
+          // Đọc nội dung của tệp tin dưới dạng URL
+          reader.readAsDataURL(file);
+        } else {
+          // Nếu tệp tin không phải là hình ảnh, hiển thị thông báo lỗi
+          preview.innerHTML = "Không phải là hình ảnh!";
+        }
+      } else {
+        // Nếu không có tệp tin nào được chọn, xóa hình ảnh khỏi div preview
+        preview.innerHTML = "";
+      }
+    });
+  </script>
 </body>
 
 </html>

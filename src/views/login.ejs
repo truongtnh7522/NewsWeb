@@ -1,51 +1,162 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  </head>
+  <style></style>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #296ef8;
+    "
+  >
+    <div
+      style="
+        display: block;
+        background-color: #332d2d;
+        color: white;
+        height: 80%;
+        width: 500px;
+        border-radius: 10px;
+      "
+    >
+      <div style="display: flex; align-items: center; justify-content: center">
+        <h1>LOGIN</h1>
+      </div>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: gainsboro;
+        "
+      >
+        <h3>Hãy nhập Email và mật khẩu!</h3>
+      </div>
+      <% if (error) { %>
+      <p><%= error %></p>
+      <% } %>
+      <div style="margin-top: 15px; height: auto">
+        <form id="loginForm">
+          <div
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            <label for="email" style="color: white"
+              ><i class="bx bxs-user-pin"></i
+            ></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              required
+              style="
+                height: 35px;
+                width: 350px;
+                background-color: #332d2d;
+                outline: none;
+                border: 1px solid white;
+                color: white;
+                font-size: 20px;
+                border-radius: 4px;
+                padding: 5px;
+              "
+            />
+          </div>
+          <br />
+          <div
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            <label for="password"><i class="bx bx-key"></i></label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+              style="
+                height: 35px;
+                width: 350px;
+                background-color: #332d2d;
+                outline: none;
+                border: 1px solid white;
+                color: white;
+                font-size: 20px;
+                border-radius: 4px;
+                padding: 5px;
+              "
+            /><br />
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-top: 40px;
+            "
+          >
+            <button
+              type="submit"
+              style="
+                width: 130px;
+                height: 50px;
+                font-size: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
 
-<head>
-  <title>Login</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
+                cursor: pointer;
+                background-color: transparent;
+                outline: none;
+                border: 2px solid white;
+                color: white;
+                border-radius: 4px;
+              "
+            >
+              Login
+            </button>
+          </div>
+        </form>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+          "
+        >
+          <p>
+            Don't have an account?
+            <a
+              href="/registerForm"
+              style="text-decoration: none; color: gainsboro"
+              >Sign Up</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $("#loginForm").submit(function (event) {
+          event.preventDefault();
 
-<body>
-  <h1>Login</h1>
-  <% if (error) { %>
-    <p>
-      <%= error %>
-    </p>
-    <% } %>
-      <form id="loginForm">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
+          var formData = $(this).serialize();
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-
-        <button type="submit">Login</button>
-      </form>
-
-
-      <script>
-        $(document).ready(function () {
-          $('#loginForm').submit(function (event) {
-            event.preventDefault();
-
-            var formData = $(this).serialize();
-
-            $.ajax({
-              type: 'POST',
-              url: '/login',
-              data: formData,
-              success: function (response) {
-
-                window.location.href = response.redirectTo;}
-
-
-              });
+          $.ajax({
+            type: "POST",
+            url: "/login",
+            data: formData,
+            success: function (response) {
+              window.location.href = response.redirectTo;
+            },
           });
         });
-      </script>
-
-
-</body>
-
+      });
+    </script>
+  </body>
 </html>

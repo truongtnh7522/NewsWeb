@@ -44,6 +44,7 @@ const articleController = new ArticleController();
 const categoryController = new CategoryController();
 const userArticleController = new UserArticleController();
 const userController=new UserController()
+router.get('/search', authenticateToken, checkAdminRole, articleController.searchArticles);
 router.get('/', authenticateToken, checkAdminRole, articleController.getAllArticles);
 router.get('/find/:id', authenticateToken, checkAdminRole,articleController.getArticleById);
 router.get('/createform', authenticateToken,checkAdminRole, articleController.showCreateForm);
@@ -52,6 +53,8 @@ router.post('/update/:id', authenticateToken,checkAdminRole, articleController.u
 router.get('/updateform/:id', authenticateToken,checkAdminRole, articleController.showUpdateForm);
 router.post('/delete/:id', authenticateToken,checkAdminRole, articleController.deleteArticle);
 
+
+router.get('/categories/search', authenticateToken,checkAdminRole, categoryController.searchCategories);
 router.get('/categories', authenticateToken,checkAdminRole, categoryController.getAllCategories);
 router.get('/categories/createform', authenticateToken, checkAdminRole,categoryController.showCreateForm);
 router.post('/categories/create', authenticateToken,checkAdminRole, categoryController.createCategory);
@@ -59,6 +62,7 @@ router.get('/categories/updateform/:id', authenticateToken,checkAdminRole, categ
 router.post('/categories/update/:id', authenticateToken,checkAdminRole, categoryController.updateCategory);
 router.post('/categories/delete/:id', authenticateToken,checkAdminRole, categoryController.deleteCategory);
 
+router.get('/userlist/search', authenticateToken,checkAdminRole, userController.searchUsers);
 router.get('/userlist', authenticateToken,checkAdminRole, userController.getAllUsers);
 router.get('/userlist/find/:id', authenticateToken, checkAdminRole,userController.getUserById);
 router.get('/usercreate/createform', authenticateToken, checkAdminRole,userController.createForm);
@@ -67,7 +71,10 @@ router.get('/userupdate/updateform/:id', authenticateToken,checkAdminRole, userC
 router.post('/userupdate/update/:id', authenticateToken,checkAdminRole, userController.updateUser);
 router.post('/userdelete/delete/:id', authenticateToken,checkAdminRole, userController.deleteUser);
 
-router.get('/user/home',  userArticleController.getAllArticles);
+
+router.get('/user/search', authenticateToken,userArticleController.searchArticles);
+router.get('/user/home',  userArticleController.getAllArticlesNoAuth);
+router.get('/user/home/category/:categoryId',  userArticleController.getArticlesByCategoryNoAuth);
 router.get('/user/', authenticateToken, userArticleController.getAllArticles);
 router.get('/user/find/:id', authenticateToken, userArticleController.getArticleById);
 router.get('/user/category/:categoryId', authenticateToken, userArticleController.getArticlesByCategory);

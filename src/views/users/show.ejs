@@ -1,18 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Details</title>
-</head>
-<body>
-    <h1>User Details</h1>
-    <h2>Name: <%= user.name %></h2>
-    <p>Address: <%= user.address %></p>
-    <p>Phone: <%= user.sdt %></p>
-    <p>Email: <%= user.email %></p>
-    <p>Status: <%= user.status ? 'Active' : 'Inactive' %></p>
-    <!-- Add more details here if needed -->
-    <a href="/articles/userlist">Back to User List</a>
-</body>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #296ef8;
+      overflow: hidden;
+    "
+  >
+    <div
+      style="
+        display: block;
+        background-color: #332d2d;
+        color: white;
+        height: 40%;
+        width: 600px;
+        border-radius: 10px;
+        padding-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div style="width: 80%">
+        <div
+          style="display: flex; align-items: center; justify-content: center"
+        >
+          <a
+            href="/articles/userlist"
+            style="
+              text-decoration: none;
+              position: absolute;
+              top: 250px;
+              left: 460px;
+              color: white;
+            "
+            ><i
+              style="font-size: 50px; color: white"
+              class="fa fa-angle-left"
+            ></i
+          ></a>
+          <h1>User Details</h1>
+        </div>
+
+        <h2>Name: <%= user.name %></h2>
+        <h2>Address: <%= user.address %></h2>
+        <h2>Phone: <%= user.sdt %></h2>
+        <h2>Email: <%= user.email %></h2>
+        <h2>Status: <%= user.status ? 'Active' : 'Inactive' %></h2>
+        <!-- Add more details here if needed -->
+      </div>
+    </div>
+  </body>
 </html>

@@ -1,41 +1,229 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create New Article</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  </head>
+  <style>
+    .BTN:hover{
+        background-color: coral;
+      }
+     input[type="file"]::file-selector-button {
+        margin-right: 20px;
+        border: none;
+        background: #084cdf;
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <title>Create New Article</title>
-</head>
-
-<body>
-  <h1>Create New Article</h1>
-  <form action="/articles/create" method="POST" enctype="multipart/form-data">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required>
-    <br>
-    <label for="content">Content:</label>
-    <textarea id="content" name="content" required></textarea>
-    <br>
-    <label for="author">Author:</label>
-    <input type="text" id="author" name="author" required>
-    <br>
-    <label for="category">Category:</label>
-    <select id="category" name="categoryId" required>
-      <% categories.forEach((category)=> { %>
-        <option value="<%= category._id %>">
-          <%= category.name %>
-        </option>
+      input[type="file"]::file-selector-button:hover {
+        background: #0d45a5;
+      }
+      img {
+        height: 60px;
+        width: 60px;
+      }
+      
+  </style>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #296ef8;
+      overflow: hidden;
+    "
+  >
+  <div
+  style="
+    display: block;
+    background-color: #332d2d;
+    color: white;
+    height: 90%;
+    width: 600px;
+    border-radius: 10px;
+  "
+>
+   
+    <div style="display: flex; align-items: center; justify-content: center">
+      <a href="/articles" style="text-decoration: none; position: absolute; top:65px; left: 460px;"><i  style="font-size: 50px; color:white;" class="fa fa-angle-left"></i></a>
+      <h1>Create New Article</h1>
+    </div>
+    <div style="margin-top: 15px; height: auto">
+    <form action="/articles/create" method="POST" enctype="multipart/form-data">
+      <div
+      style="display: flex; align-items: center; justify-content: start"
+    >  <label for="title" style="margin-right: 85px;font-size: 20px;margin-left: 20px;">Title</label>
+      <input type="text" id="title" name="title" required  style="
+      height: 20px;
+      width: 400px;
+      background-color: white;
+      outline: none;
+      border: 1px solid white;
+      color: black;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 5px;
+    "/> </div>
+      <br />
+      <div
+      style="display: flex; align-items: center; justify-content: start"
+    > 
+      <label for="content" style="margin-right: 55px;font-size: 20px;margin-left: 20px;">Content:</label>
+      <textarea id="content" name="content" required  style="
+      height: 70px;
+      width: 400px;
+      background-color: white;
+      outline: none;
+      border: 1px solid white;
+      color: black;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 5px;
+    "></textarea>
+      </div>
+      <br />
+      <label for="author" style="margin-right: 58px;font-size: 20px;margin-left: 20px;">Author:</label>
+      <input type="text" id="author" name="author" required style="
+      height: 20px;
+      width: 400px;
+      background-color: white;
+      outline: none;
+      border: 1px solid white;
+      color: black;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 5px;
+    "/>
+      <br />
+      <div
+      style="display: flex; align-items: center; justify-content: start;margin-top: 15px;"
+    > 
+      <label for="category"style="margin-right: 47px;font-size: 20px;margin-left: 20px;">Category:</label>
+      <select id="category" name="categoryId" required style="
+      height: 45px;
+      width: 410px;
+      background-color: white;
+      outline: none;
+      border: 1px solid white;
+      color: black;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 5px;
+    ">
+        <% categories.forEach((category)=> { %>
+        <option value="<%= category._id %>"><%= category.name %></option>
         <% }); %>
-    </select>
-    <br>
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" required></textarea>
-    <br>
-    <label for="image">Image:</label>
-    <input type="file" id="image" name="image" >
-    <br>
-    <button type="submit">Create</button>
-  </form>
-  <a href="/articles">Back to Article List</a>
-</body>
+      </select>
+      </div>
+      <br />
+      <div
+      style="display: flex; align-items: center; justify-content: start"
+    > 
+      <label for="description" style="margin-right: 27px;font-size: 20px;margin-left: 20px;">Description:</label>
+      <textarea id="description" name="description" required style="
+      height: 100px;
+      width: 400px;
+      background-color: white;
+      outline: none;
+      border: 1px solid white;
+      color: black;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 5px;
+    "> </textarea>
+      </div>
+      <br />
+      <div
+      style="display: flex; align-items: center; justify-content: start"
+    > 
+      <label for="image" style="margin-right: 65px;font-size: 20px;margin-left: 20px;">Image:</label>
+      
+      <input
+      type="file"
+      id="image"
+      name="image"
+      required
+      placeholder="Profile Image"
+    />
+    <div id="preview" style="width: 30px; height: 30px"></div>
+      </div>
+      <br />
+      <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 40px;
+      "
+    >
+      <button type="submit"  style="
+      width: 130px;
+      height: 50px;
+      font-size: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      cursor: pointer;
+      background-color: transparent;
+      outline: none;
+      border: 2px solid white;
+      color: white;
+      border-radius: 4px;
+    " class="BTN">Create</button>
+      </div>
+    </form>
+
+   
+    </div>
+    <script>
+      // Lấy đối tượng input và div preview
+      const imageInput = document.getElementById("image");
+      const preview = document.getElementById("preview");
+
+      // Thêm sự kiện onchange cho input
+      imageInput.addEventListener("change", function (event) {
+        // Lấy danh sách các tệp tin đã chọn
+        const fileList = event.target.files;
+
+        // Kiểm tra xem có tệp tin nào được chọn hay không
+        if (fileList.length > 0) {
+          // Lấy tệp tin đầu tiên từ danh sách
+          const file = fileList[0];
+
+          // Kiểm tra xem tệp tin có phải là hình ảnh hay không
+          if (file.type.startsWith("image/")) {
+            // Tạo đối tượng FileReader để đọc nội dung của tệp tin
+            const reader = new FileReader();
+
+            // Thiết lập sự kiện khi đọc hoàn thành
+            reader.onload = function () {
+              // Tạo đối tượng hình ảnh
+              const image = new Image();
+              image.src = reader.result;
+
+              // Thêm hình ảnh vào div preview
+              preview.innerHTML = "";
+              preview.appendChild(image);
+            };
+
+            // Đọc nội dung của tệp tin dưới dạng URL
+            reader.readAsDataURL(file);
+          } else {
+            // Nếu tệp tin không phải là hình ảnh, hiển thị thông báo lỗi
+            preview.innerHTML = "Không phải là hình ảnh!";
+          }
+        } else {
+          // Nếu không có tệp tin nào được chọn, xóa hình ảnh khỏi div preview
+          preview.innerHTML = "";
+        }
+      });
+    </script>
+  </body>
+</div>
 
 </html>

@@ -77,7 +77,7 @@ exports.loginUser = async (req, res) => {
 };
 exports.logoutUser = (req, res) => {
   res.clearCookie('token'); // Xóa token khỏi cookie
-  res.redirect('/loginform'); // Chuyển hướng về trang đăng nhập
+  res.redirect('/articles/user/home'); // Chuyển hướng về trang đăng nhập
 };
 exports.deletepersonuser = async (req, res) => {
   try {

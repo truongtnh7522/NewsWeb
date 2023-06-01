@@ -1,15 +1,26 @@
 const Article = require('../models/Article');
 
 class ArticleService {
-  async getArticlesByCategory(categoryId) {
-    try {
-      const articles = await Article.find({ category: categoryId }).populate('category');
-      return articles;
-    } catch (error) {
-      console.error(error);
-      throw new Error('Server Error');
-    }
+  async searchArticles(query) {
+    const articles = await Article.find({ title: { $regex: String(query), $options: 'i' } }).exec();
+    return articles;
   }
+  async getArticlesByCategory(categoryId, searchQuery) {
+  try {
+    const query = { category: categoryId };
+
+    if (searchQuery) {
+      query.title = { $regex: searchQuery, $options: 'i' };
+    }
+
+    const articles = await Article.find(query);
+
+    return articles;
+  } catch (error) {
+    throw error;
+  }
+}
+
   
   async getAllArticles() {
     try {
