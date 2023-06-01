@@ -47,7 +47,7 @@ DatabaseSingleton.connect();
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}/articles/user/home`);
-  console.log(`Aeen API at http://localhost:${port}/api-docs`);
+  console.log(`Seen API at http://localhost:${port}/api-docs`);
   exec(`http://localhost:${port}/api-docs`);
   exec(`http://localhost:${port}/articles/user/home`);
 });
