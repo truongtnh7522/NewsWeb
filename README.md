@@ -5,7 +5,6 @@ Trần Nguyễn Huy Trường - 20110590
 Nguyễn Phước Công - 20110447
 Nguyễn Nhật Tính - 20110576
 # Công nghệ sử dụng: NodeJS, MongoDB
-# Các loại Mẫu thiết kế: 
 # Hướng dẫn cài đặt:
 - git clone https://github.com/truongtnh7522/NewsWeb
 - chạy code bằng VSCode
