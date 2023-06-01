@@ -81,8 +81,11 @@
           <p>No categories found.</p>
           <% } else { %>
             <div style="width: 100%; height: 30px; background-color: #2fa1b3;display: flex;">
-            <div style="display: flex; align-items: center; color: white; width: 150px; padding: 5px; cursor: pointer;" class="Cate">
-              <h2 style="font-size: 15px;">MỚI</h2>
+            <div id="homeLink" style="display: flex; align-items: center; color: white; width: 150px; padding: 5px; cursor: pointer;" class="Cate">
+              <h2 style="font-size: 15px;">TRANG CHỦ</h2>
+            </div>
+            <div  id="contact" style="display: flex; align-items: center; color: white; width: 150px; padding: 5px; cursor: pointer;" class="Cate">
+              <h2 style="font-size: 15px;">CONTACT</h2>
             </div>
             <select class="Cate2" id="category" name="category" style="height: 100%; width: 150px;outline: none; border: none;background-color: transparent; border-left: 1px solid hsla(0,0%,100%,.2);border-right: 1px solid hsla(0,0%,100%,.2);color: white; cursor: pointer;">
               <option value="" <%=typeof selectedCategory==='undefined' ? 'selected' : '' %>>CHỦ ĐỀ</option>
@@ -109,7 +112,7 @@
                   </ul>
                   <% } %>
 
-                    <a href="/articles/user">Back to Article List</a>
+                  
 
                   
                     <script>
@@ -155,6 +158,20 @@
                         imgElement.addEventListener("mouseout", function () {
                           myDivElement.classList.remove("hide");
                         });
+                      });
+                    </script>
+                     <script>
+                      const homeLink = document.getElementById('homeLink');
+                    
+                      homeLink.addEventListener('click', function() {
+                        window.location.href = '/articles/user/home';
+                      });
+                    </script>
+                    <script>
+                      const contact = document.getElementById('contact');
+                    
+                      contact.addEventListener('click', function() {
+                        window.location.href = '/articles/user/home/contact';
                       });
                     </script>
                     

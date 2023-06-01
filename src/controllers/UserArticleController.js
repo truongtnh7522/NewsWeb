@@ -12,8 +12,30 @@ class ArticleController {
     this.getArticlesByCategory=this.getArticlesByCategory.bind(this);    
     this.getAllArticlesNoAuth = this.getAllArticlesNoAuth.bind(this);
     this.getArticlesByCategoryNoAuth=this.getArticlesByCategoryNoAuth.bind(this);
+    this.showContact=this.showContact.bind(this);
+    this.showContactNoAuth=this.showContactNoAuth.bind(this);
     // Thêm vào constructor của ArticleController
 this.searchArticles = this.searchArticles.bind(this);
+  }
+  async showContact(req, res) {
+    try {
+      const user = req.user;
+      res.render('articles/contact',{ user });
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Server Error');
+    }
+  }
+  async showContactNoAuth(req, res) {
+    try {
+      const user = req.user;
+      res.render('articles/contactnoauth',{ user });
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Server Error');
+    }
   }
   async searchArticles(req, res) {
     try {

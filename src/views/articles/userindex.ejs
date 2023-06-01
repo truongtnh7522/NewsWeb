@@ -85,6 +85,9 @@
             <div  id="homeLink" style="display: flex; align-items: center; color: white; width: 150px; padding: 5px; cursor: pointer;" class="Cate">
               <h2 style="font-size: 15px;">TRANG CHỦ</h2>
             </div>
+            <div  id="contact" style="display: flex; align-items: center; color: white; width: 150px; padding: 5px; cursor: pointer;" class="Cate">
+              <h2 style="font-size: 15px;">CONTACT</h2>
+            </div>
             <select class="Cate2" id="category" name="category" style="height: 100%; width: 150px;outline: none; border: none;background-color: transparent; border-left: 1px solid hsla(0,0%,100%,.2);border-right: 1px solid hsla(0,0%,100%,.2);color: white; cursor: pointer;">
               <option value="" <%=typeof selectedCategory==='undefined' ? 'selected' : '' %>>CHỦ ĐỀ</option>
               <% categories.forEach((category)=> { %>
@@ -163,6 +166,13 @@
                     
                       homeLink.addEventListener('click', function() {
                         window.location.href = '/articles/user';
+                      });
+                    </script>
+                    <script>
+                      const contact = document.getElementById('contact');
+                    
+                      contact.addEventListener('click', function() {
+                        window.location.href = '/articles/user/contact';
                       });
                     </script>
                     

@@ -73,9 +73,11 @@ router.post('/userdelete/delete/:id', authenticateToken,checkAdminRole, userCont
 
 
 router.get('/user/search', authenticateToken,userArticleController.searchArticles);
+router.get('/user/home/contact',  userArticleController.showContactNoAuth);
 router.get('/user/home',  userArticleController.getAllArticlesNoAuth);
 router.get('/user/home/category/:categoryId',  userArticleController.getArticlesByCategoryNoAuth);
 router.get('/user/', authenticateToken, userArticleController.getAllArticles);
+router.get('/user/contact', authenticateToken, userArticleController.showContact);
 router.get('/user/find/:id', authenticateToken, userArticleController.getArticleById);
 router.get('/user/category/:categoryId', authenticateToken, userArticleController.getArticlesByCategory);
 // Thay đổi trạng thái người dùng
