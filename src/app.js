@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+const { exec } = require('child_process');
 
 // Sử dụng body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,5 +46,8 @@ DatabaseSingleton.connect();
 // Start the server
 const port = 3000;
 app.listen(port, () => {
-  console.log(`Server started at http://localhost:3000/articles/user/home`);
+  console.log(`Server started at http://localhost:${port}/articles/user/home`);
+  console.log(`Aeen API at http://localhost:${port}/api-docs`);
+  exec(`http://localhost:${port}/api-docs`);
+  exec(`http://localhost:${port}/articles/user/home`);
 });

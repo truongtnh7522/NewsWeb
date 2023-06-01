@@ -1,0 +1,383 @@
+swagger: '2.0'
+info:
+  title: My API
+  description: Description of my API
+  version: 1.0.0
+basePath: /articles
+
+paths:
+  /search:
+    get:
+      description: Search articles
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /:
+    get:
+      description: Get all articles
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /find/{id}:
+    get:
+      description: Get article by ID
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /createform:
+    get:
+      description: Show create form
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /create:
+    post:
+      description: Create article
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /update/{id}:
+    post:
+      description: Update article
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /updateform/{id}:
+    get:
+      description: Show update form
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /delete/{id}:
+    post:
+      description: Delete article
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /categories/search:
+    get:
+      description: Search categories
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /categories:
+    get:
+      description: Get all categories
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /categories/createform:
+    get:
+      description: Show create form for category
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /categories/create:
+    post:
+      description: Create category
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /categories/updateform/{id}:
+    get:
+      description: Show update form for category
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /categories/update/{id}:
+    post:
+      description: Update category
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /categories/delete/{id}:
+    post:
+      description: Delete category
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /userlist/search:
+    get:
+      description: Search users
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /userlist:
+    get:
+      description: Get all users
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /userlist/find/{id}:
+    get:
+      description: Get user by ID
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /usercreate/createform:
+    get:
+      description: Show create form for user
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /usercreate/create:
+    post:
+      description: Create user
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /userupdate/updateform/{id}:
+    get:
+      description: Show update form for user
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /userupdate/update/{id}:
+    post:
+      description: Update user
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /userdelete/delete/{id}:
+    post:
+      description: Delete user
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /user/search:
+    get:
+      description: Search articles by user
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /user/home:
+    get:
+      description: Get all articles (no authentication required)
+      responses:
+        200:
+          description: OK
+
+  /user/home/category/{categoryId}:
+    get:
+      description: Get articles by category (no authentication required)
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /user/:
+    get:
+      description: Get all articles by user
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+
+  /user/find/{id}:
+    get:
+      description: Get article by ID (authenticated user)
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /user/category/{categoryId}:
+    get:
+      description: Get articles by category (authenticated user)
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+
+  /user/deletepersonuser:
+    post:
+      description: Change user status
+      security:
+        - CookieAuth: []
+      responses:
+        200:
+          description: OK
+  /auth/registerform:
+    get:
+      description: Show registration form
+      responses:
+        200:
+          description: OK
+
+  /auth/register:
+    post:
+      description: Register user
+      responses:
+        200:
+          description: OK
+
+  /auth/loginform:
+    get:
+      description: Show login form
+      responses:
+        200:
+          description: OK
+
+  /auth/login:
+    post:
+      description: Login user
+      responses:
+        200:
+          description: OK
+
+  /auth/logout:
+    get:
+      description: Logout user
+      responses:
+        200:
+          description: OK
+
+securityDefinitions:
+  CookieAuth:
+    type: apiKey
+    in: cookie
+    name: token
