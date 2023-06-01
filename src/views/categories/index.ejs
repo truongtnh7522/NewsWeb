@@ -29,24 +29,14 @@
       crossorigin="anonymous"
     ></script>
     <style>
-      .myDIV1 {
-        display: none;
-      }
       .myDIV2 {
         display: none;
       }
-      .myDIV3 {
-        display: none;
-      }
-      .hide {
+
+      .hide2 {
         display: block;
       }
-      .hide1 {
-        display: block;
-      }
-      .hide3 {
-        display: block;
-      }
+
       .box-user:hover {
         background-color: #e9ecef;
       }
@@ -92,11 +82,9 @@
           >User</a
         >
       </p>
-      <div class="box-user" style="display: flex; justify-content: center">
-        <p><%= user.name %></p>
-      </div>
+
       <div
-        class="IMG1"
+        class="IMG2"
         style="
           display: flex;
           align-items: center;
@@ -104,6 +92,9 @@
           cursor: pointer;
         "
       >
+        <div class="box-user" style="display: flex; justify-content: center">
+          <p><%= user.name %></p>
+        </div>
         <img
           src="<%= user.image %>"
           alt="User Image"
@@ -112,12 +103,13 @@
             max-height: 100px;
             border-radius: 50%;
             cursor: pointer;
+            margin-left: 15px;
           "
           onclick="myFunction()"
         />
 
         <div
-          class="myDIV1"
+          class="myDIV2"
           style="
             position: absolute;
             top: 90px;
@@ -127,10 +119,9 @@
             background-color: white;
             width: 150px;
             border-radius: 5px;
-            height: 190px;
+            height: 170px;
           "
         >
-          
           <div class="box-user" style="display: flex; justify-content: center">
             <p><%= user.email %></p>
           </div>
@@ -296,32 +287,14 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const imgElement = document.querySelector(".IMG1");
-        const myDivElement = document.querySelector(".myDIV1");
         const imgElement2 = document.querySelector(".IMG2");
         const myDivElement2 = document.querySelector(".myDIV2");
-        const imgElement3 = document.querySelector(".IMG3");
-        const myDivElement3 = document.querySelector(".myDIV3");
-        imgElement.addEventListener("mouseover", function () {
-          myDivElement.classList.add("hide");
-        });
 
-        imgElement.addEventListener("mouseout", function () {
-          myDivElement.classList.remove("hide");
-        });
         imgElement2.addEventListener("mouseover", function () {
-          myDivElement2.classList.add("hide1");
+          myDivElement2.classList.add("hide2");
         });
-
         imgElement2.addEventListener("mouseout", function () {
-          myDivElement2.classList.remove("hide1");
-        });
-        imgElement3.addEventListener("mouseover", function () {
-          myDivElement3.classList.add("hide3");
-        });
-
-        imgElement3.addEventListener("mouseout", function () {
-          myDivElement3.classList.remove("hide3");
+          myDivElement2.classList.remove("hide2");
         });
       });
     </script>
