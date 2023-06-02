@@ -74,7 +74,7 @@ class UserService {
       if (!mongoose.isValidObjectId(id)) {
         throw new Error('Invalid user ID');
       }
-
+  
       let updatedUser = await User.findById(id);
       if (!updatedUser) {
         throw new Error('User not found');
@@ -101,6 +101,8 @@ class UserService {
       updatedUser.status = status;
 
       await updatedUser.save();
+
+      return updatedUser; // Optionally, you can return the updated user if needed
     } catch (error) {
       throw error;
     }

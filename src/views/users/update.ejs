@@ -177,9 +177,9 @@
         <div
       style="display: flex; align-items: center; justify-content: start"
     >  <label for="status" style="margin-right: 85px;font-size: 20px;margin-left: 20px;">Status:</label>
-        <input type="checkbox" name="status" id="status" <%= user.status ? 'checked' : '' %>style="
-        height:25px;
-        width: 25px;
+    <select name="status" id="status" style="
+        height: 35px;
+        width: 100px;
         background-color: white;
         outline: none;
         border: 1px solid white;
@@ -187,7 +187,12 @@
         font-size: 20px;
         border-radius: 8px;
         padding: 5px;
-      "/></div></div>
+      ">
+  <option value="true" <%= user.status ? 'selected' : '' %> style="width: 80px;">True</option>
+  <option value="false" <%= !user.status ? 'selected' : '' %> style="width: 80px;">False</option>
+</select>
+
+</div></div>
 
         <br />
         <div
