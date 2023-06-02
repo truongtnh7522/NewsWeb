@@ -43,7 +43,9 @@ exports.loginUser = async (req, res) => {
     if (!user) {
       throw new Error('Invalid email or password');
     }
-
+    if (!user.status) {
+      throw new Error('Your account is inactive');
+    }
     const isMatch = await user.comparePassword(password);
 
     if (!isMatch) {
