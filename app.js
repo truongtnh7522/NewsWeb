@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./swagger.yaml');
+const swaggerDocument = YAML.load('./src/swagger.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const { exec } = require('child_process');
 
@@ -12,12 +12,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const cookieParser= require('cookie-parser')
 app.use(cookieParser());
 const multer = require('multer');
-const ArticleRoutes = require('./routes/articleRoutes');
-const DatabaseSingleton = require('./utils/DatabaseSingleton');
+const ArticleRoutes = require('./src/routes/articleRoutes');
+const DatabaseSingleton = require('./src/utils/DatabaseSingleton');
 
 // Set view engine
 app.set('view engine', 'ejs');
-app.set('views', './views');
+app.set('views', './src/views');
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -35,7 +35,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 app.use(upload.single('image'));
-const UserRoutes = require('./routes/userRoutes');
+const UserRoutes = require('./src/routes/userRoutes');
 app.use('/', UserRoutes);
 // Routes
 app.use('/articles', ArticleRoutes);
